@@ -61,6 +61,6 @@ void ppm_set_green(ppm_image_t *image, uint32_t row, uint32_t col, uint8_t green
 void ppm_set_blue(ppm_image_t *image, uint32_t row, uint32_t col, uint8_t blue);
 void ppm_set_rgb(ppm_image_t *image, uint32_t row, uint32_t col, uint8_t red, uint8_t green, uint8_t blue);
 
-void ppm_write_to_file(char* filename);
+void ppm_write_to_file(char *filename);
 
 #endif

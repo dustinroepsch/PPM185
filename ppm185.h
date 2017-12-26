@@ -3,17 +3,20 @@
 
 #include <stdint.h>
 
-typedef struct
-{
-    uint8_t r, g, b;
-} ppm_rgb_t;
+typedef struct ppm_rgb ppm_rgb_t;
 
-typedef struct
-{
-    ppm_rgb_t *raster;
-    uint32_t width, height;
-} ppm_image_t;
+typedef struct ppm_image ppm_image_t;
 
+/*
+* Creates an image with dimensions `width` and `height 
+* and returns a pointer to it.
+*
+*EXAMPLE USE:
+* ppm_image_t *my_image = ppm_create(300, 400);
+*IMPORTANT NOTES: 
+* It is good practice to call `ppm_destroy` on images when you are done 
+* with them. Failure to do this may introduce "Memory Leaks" into your program.
+*/
 ppm_image_t *ppm_create(uint32_t width, uint32_t height);
 
 void ppm_destory(ppm_image_t **c);

@@ -41,7 +41,7 @@ void bounds_test(uint32_t width, uint32_t height, uint32_t row, uint32_t col)
     //don't need to check for negative values because unsigned ints
     if (row >= height || col >= width)
     {
-        printf("Pixel (%" PRIu32 ", %" PRIu32 ") is out of bounds of the image.\n Aborting...");
+        printf("Pixel (%" PRIu32 ", %" PRIu32 ") is out of bounds of the image.\n Aborting...", row, col);
         abort();
     }
 }
@@ -88,7 +88,7 @@ void ppm_write_to_file(ppm_image_t *image, char *filename)
     }
 
     fprintf(file, "P6\n");
-    fprintf(file, "%" PRIu32 " %" PRIu32 "\n");
+    fprintf(file, "%" PRIu32 " %" PRIu32 "\n", image->width, image->height);
     fprintf(file, "255\n");
 
     for (size_t row = 0; row < image->height; row++)

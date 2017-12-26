@@ -61,6 +61,15 @@ void ppm_set_green(ppm_image_t *image, uint32_t row, uint32_t col, uint8_t green
 void ppm_set_blue(ppm_image_t *image, uint32_t row, uint32_t col, uint8_t blue);
 void ppm_set_rgb(ppm_image_t *image, uint32_t row, uint32_t col, uint8_t red, uint8_t green, uint8_t blue);
 
-void ppm_write_to_file(char *filename);
+/*
+* Saves the ppm to a file named `filename`
+*
+*EXAMPLE USE:
+* ppm_write_to_file(my_image, "output_image.ppm");
+*
+*IMPORTANT NOTES:
+* the filename may include a path, example "c:\\example_folder\output.ppm"
+*/
+void ppm_write_to_file(ppm_image_t* image, char *filename);
 
 #endif

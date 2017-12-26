@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include <inttypes.h>
+#include <stdio.h>
 
 typedef struct
 {
@@ -74,4 +75,31 @@ void ppm_set_rgb(ppm_image_t *image, uint32_t row, uint32_t col, uint8_t red, ui
     pixel->r = red;
     pixel->g = green;
     pixel->b = blue;
+}
+
+void ppm_write_to_file(ppm_image_t *image, char *filename)
+{
+    FILE *file = fopen(filename, "w");
+
+    if (file == NULL)
+    {
+        printf("Unable to open file \"%s\"\n", filename);
+        abort();
+    }
+
+    fprintf(file, "P6\n");
+    fprintf(file, "%" PRIu32 " %" PRIu32 "\n");
+    fprintf(file, "255\n");
+
+    for (size_t row = 0; row < image->height; row++)
+    {
+        for (size_t col = 0; col < image->width; col++)
+        {
+            ppm_rgb_t rgb = image->raster[row * image->width + col];
+            fwrite(&(rgb.r), 1, 1, file);
+            fwrite(&(rgb.g), 1, 1, file);
+            fwrite(&(rgb.b), 1, 1, file);
+        }
+    }
+    fclose(file);
 }
